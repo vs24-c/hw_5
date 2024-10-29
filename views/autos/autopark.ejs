@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Autos</title>
+    <link rel="stylesheet" href="/stylesheets/autopark.css" />
+    <link rel="stylesheet" href="/stylesheets/header.css" />
+  </head>
+  <body>
+    <header class="header"><%- include('../parts/header.ejs') %></header>
+    <div class="wrapper">
+      <main class="page">
+        <div class="page__container">
+          <div class="page__title">
+            <h2>Autos</h2>
+          </div>
+          <div class="page__body">
+            <% auto.forEach(car => { %>
+            <div class="card">
+              <div class="card__image">
+                <img src="<%= car.imgSrc %>" alt="" />
+              </div>
+              <div class="card__content">
+                <div class="card__text">
+                  <span>Model</span>
+                  <h4><%= car.name %></h4>
+                </div>
+                <div class="card__text">
+                  <span>First registr</span><span><%= car.year %> year</span>
+                </div>
+                <div class="card__text"><span>Price</span><span><%= car.price %> $</span></div>
+                <div class="card__text"><span>Id</span><span><%= car.id %></span></div>
+              </div>
+              <div class="card__buttons">
+                <a class="card__btn" href="/auto/edit/<%= car.id %>">Edit</a>
+                <button onclick="deleteAuto(`<%= car.id %>`)" class="card__btn">Delete</button>
+              </div>
+            </div>
+            <% }); %>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+  <script src="/javascripts/script.js"></script>
+</html>

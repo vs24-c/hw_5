@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/addAuto.css" />
+    <link rel="stylesheet" href="/stylesheets/header.css" />
+    <title>Add Auto</title>
+  </head>
+  <body>
+    <header class="header"><%- include('../parts/header.ejs') %></header>
+    <div class="wrapper">
+      <main class="page">
+        <div class="page__container">
+          <div class="page__title">
+            <h2><%= auto && auto.id ? "Eddit Auto" : "Add Auto" %></h2>
+          </div>
+          <form class="page__form" action="<%= auto && auto.id ? "/auto/edit/" + auto.id : "/auto/add" %>" method="POST" enctype="multipart/form-data">     
+              <label class="form__group" for="name">Enter car brend
+              <input type="text" name="name" required value="<%= auto?.name %>" />
+            </label>           
+              <label class="form__group" for="year">Enter year
+              <input type="number" name="year" required value="<%= auto?.year %>" />
+            </label>            
+              <label class="form__group" for="price">Enter price
+              <input type="number" name="price" required value="<%= auto?.price %>" />
+            </label>
+            <label class="form__group" for="image">Upload Photo
+              <input id="imgPrev" type="file" name="image" required value="<%= auto?.imgSrc %>" >
+            </label>
+            <div class="form__image">
+              <img id="imgPrevew" src="<%= auto && auto.id ? '/' + auto.imgSrc :  '/empty-file.jpg'  %>" alt="">
+            </div>
+            <button type="submit"><%= auto && auto.id ? 'Eddit Auto' : 'Add Auto' %></button>
+          </form>
+        </div>
+      </main>
+    </div>
+  </body>
+  <script src="/javascripts/script.js"></script>
+</html>
